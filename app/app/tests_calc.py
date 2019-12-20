@@ -2,6 +2,7 @@ from django.test import TestCase
 
 from app.calc import sum
 
+
 class CalcTests(TestCase):
 
     def test_sum(self):
