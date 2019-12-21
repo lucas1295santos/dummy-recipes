@@ -24,4 +24,3 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
     # default user has an username, this custom uses email as username
     USERNAME_FIELD = 'email'
-
