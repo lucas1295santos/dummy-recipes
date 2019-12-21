@@ -18,7 +18,7 @@ class ModelTests(TestCase):
 
     def test_new_user_email_normalized(self):
         """Tests if users email is normalized on creation"""
-        email = 'UseR@dumMy.cOm'
+        email = 'user@dumMy.cOm'
         password = 'user@dummy.com'
         user = get_user_model().objects.create_user(
             email=email,
@@ -27,3 +27,12 @@ class ModelTests(TestCase):
 
         expected_normalized_email = 'user@dummy.com'
         self.assertEqual(user.email, expected_normalized_email)
+
+    def test_new_user_invalid_email(self):
+        """Tests if user email is validated on creation"""
+        with self.assertRaises(ValueError):
+            password = 'test123'
+            user = get_user_model().objects.create_user(
+                email=None,
+                password=password
+            )
