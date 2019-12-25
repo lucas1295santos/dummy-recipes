@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
      PermissionsMixin
+from django.conf import settings
 
 
 class UserManager(BaseUserManager):
@@ -34,3 +35,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
     # default user has an username, this custom uses email as username
     USERNAME_FIELD = 'email'
+
+
+class Tag(models.Model):
+    """Tag to identify an recipe"""
+    name = models.CharField(max_length=255)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return self.name
