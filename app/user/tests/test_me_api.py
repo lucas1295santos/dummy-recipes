@@ -44,7 +44,7 @@ class MeAPITests(TestCase):
         """Assert that POST is not allowed on me endpoint"""
         response = self.client.post(ME_URL, {})
 
-        expected_status = status.HTTP_504_METHOD_NOT_ALLOWED
+        expected_status = status.HTTP_405_METHOD_NOT_ALLOWED
         self.assertEqual(response.status_code, expected_status)
 
     def test_patch_user_profile(self):
